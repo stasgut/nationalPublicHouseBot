@@ -6,7 +6,7 @@ namespace CndBot.Core
 {
     public class GetInfoCommand : BaseCommand
     {
-        private const string INFO_MSG =    "Це просто тестове повідомлення про інфу";
+        private const string INFO_MSG = "Вітаємо в нашому чат-боті!";
         public override async Task ExecuteCommand(ITelegramBotClient botClient, Update update)
         {
             if (update.Message != null)

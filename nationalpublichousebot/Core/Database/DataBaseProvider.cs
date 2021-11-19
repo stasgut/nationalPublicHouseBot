@@ -5,7 +5,7 @@ namespace CndBot.Core.Database
 {
     public sealed class DataBaseProvider : DbContext
     {
-        private const string DB_CON_STR = "Server=localhost;Database=cdndb;User=root;";
+        private const string DB_CON_STR = "Server=localhost;Database=botdb;User=root;Password=stas1102;port=3360;";
 
         public DbSet<FormDataModel> FormDataModels { get; set; }
         
