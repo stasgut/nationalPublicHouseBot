@@ -8,6 +8,7 @@ namespace CndBot.Core
 {
     public class StartCommand : BaseCommand
     {
+        //@nationalpublichousebot
         public const string REGISTER_MSG = "Зареєструватися на гурток";
         public const string CHECK_EVENTS_MSG = "Майбутні події";
         public const string CONTACT_US_MSG = "Зворотній зв'язок";
