@@ -19,7 +19,7 @@ namespace CndBot.Core
 {
     public class Client
     {
-        public const string SITE_URL = "http://tvorchist.in.ua";
+        public const string SITE_URL = "http://google.com";
         
         public const long MAIN_CHAT_ID = 424510699;
         public const long SIGNING_CHAT_ID = 598097534;
@@ -125,8 +125,8 @@ namespace CndBot.Core
                     case StartCommand.CONTACT_US_MSG:
                         await botClient.SendTextMessageAsync(message.Chat, 
                             "🕔 Графік роботи: 09:00 - 22:00 (пн-пт) \n \n" +
-                            "☎ Контактні номери: +380324931354 | +380324931352 \n \n" +
-                            "📨 Email-адреса: dzvinochky2008@ukr.net", 
+                            "☎ Контактні номери: +3806366636 | +3806366636 \n \n" +
+                            "📨 Email-адреса: somemail@gmail.com", 
                             replyMarkup: new
                                 InlineKeyboardMarkup(InlineKeyboardButton.WithUrl("Перейти на сайт 🌎", SITE_URL)),
                             cancellationToken: cancellationToken);
@@ -139,10 +139,10 @@ namespace CndBot.Core
                     //Show on map request
                     case StartCommand.SHOW_ON_MAP_MSG:
                         await botClient.SendTextMessageAsync(message.Chat,
-                            "Ми знаходимося за адресою: проспект Шевченка, 15", 
+                            "Ми знаходимося за адресою: проспект Свободи, 28", 
                             cancellationToken: cancellationToken);
                             
-                        await botClient.SendLocationAsync(message.Chat, 50.3945274d, 24.2401365d, 
+                        await botClient.SendLocationAsync(message.Chat, 49.843641d, 24.026442d, 
                             cancellationToken: cancellationToken);
                         break;
                 }
