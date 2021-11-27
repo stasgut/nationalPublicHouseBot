@@ -114,7 +114,7 @@ namespace CndBot.Core.Actions
                     {
                         if (int.TryParse(update.Message.Text, out _))
                         {
-                            _botClient.SendTextMessageAsync(update.Message.Chat, "Repeat");
+                            _botClient.SendTextMessageAsync(update.Message.Chat, "Введіть коректне ім'я!");
                             return false;
                         }
                         break;
@@ -123,7 +123,7 @@ namespace CndBot.Core.Actions
                     {
                         if (!int.TryParse(update.Message.Text, out _))
                         {
-                            _botClient.SendTextMessageAsync(update.Message.Chat, "Repeat");
+                            _botClient.SendTextMessageAsync(update.Message.Chat, "Введіть коректний вік!");
                             return false;
                         }
                         break;
