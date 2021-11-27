@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CndBot.Core.Database;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace CndBot.Core.Actions
@@ -37,6 +39,8 @@ namespace CndBot.Core.Actions
             {
                 var chat = update.Message.Chat;
                 
+                var updateStage = Check(_stage);
+                
                 switch (_stage)
                 {
                     case RegisterFormStage.Init:
@@ -52,15 +56,23 @@ namespace CndBot.Core.Actions
                             replyMarkup: markup);
                         break;
                     case RegisterFormStage.Requested:
+                    {
+
                         SetFormType(ref dataModel, update.Message.Text);
-                        await _botClient.SendTextMessageAsync(chat, "Як Вас звати?", 
+                        await _botClient.SendTextMessageAsync(chat, "Як Вас звати?",
                             replyMarkup: new ReplyKeyboardRemove());
                         break;
+                    }
                     case RegisterFormStage.Name:
-                        SetName(ref dataModel, update.Message.Text);;
+                        if (!updateStage)
+                            break;
+                        SetName(ref dataModel, update.Message.Text);
+                        Console.WriteLine(update.Message.Chat.Id);
                         await _botClient.SendTextMessageAsync(chat, "Скільки Вам років?");
                         break;
                     case RegisterFormStage.Age:
+                        if (!updateStage)
+                            break;
                         SetAge(ref dataModel, int.Parse(update.Message.Text ?? string.Empty));
                         await _botClient.SendTextMessageAsync(chat, "Будь ласка, опишіть себе. Чи займались ви " +
                                                                     "цим раніше?");
@@ -74,7 +86,7 @@ namespace CndBot.Core.Actions
                         await _botClient.SendTextMessageAsync(chat, "Будь ласка, поділіться Вашим контактним " +
                                                                     "номером, натиснувши відповідну кнопку.",
                             replyMarkup: markupContact);
-
+ 
                         break;
                     case RegisterFormStage.GetContact:
                         SetContact(ref dataModel, update.Message.Contact.PhoneNumber);
@@ -87,9 +99,42 @@ namespace CndBot.Core.Actions
                         throw new ArgumentOutOfRangeException();
                 }
                 
+                if (!updateStage) 
+                   return;
+                
                 _stage = (RegisterFormStage) ((int) _stage << 1);
+
+
+            }
+            bool Check(RegisterFormStage registerFormStage)
+            {
+                switch (registerFormStage)
+                {
+                    case RegisterFormStage.Name:
+                    {
+                        if (int.TryParse(update.Message.Text, out _))
+                        {
+                            _botClient.SendTextMessageAsync(update.Message.Chat, "Repeat");
+                            return false;
+                        }
+                        break;
+                    }
+                    case RegisterFormStage.Age:
+                    {
+                        if (!int.TryParse(update.Message.Text, out _))
+                        {
+                            _botClient.SendTextMessageAsync(update.Message.Chat, "Repeat");
+                            return false;
+                        }
+                        break;
+                    }
+                }
+                
+                return true;
+                
             }
         }
+        
 
         public async Task InitForm(FormDataModel dataModel, Update update)
         {

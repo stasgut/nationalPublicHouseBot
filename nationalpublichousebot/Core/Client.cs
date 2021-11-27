@@ -10,9 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Extensions.Polling;
-using Telegram.Bot.Requests;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace CndBot.Core
@@ -21,8 +19,8 @@ namespace CndBot.Core
     {
         public const string SITE_URL = "http://google.com";
         
-        public const long MAIN_CHAT_ID = 424510699;
-        public const long SIGNING_CHAT_ID = 598097534;
+        public const long MAIN_CHAT_ID = 390661167;
+        public const long SIGNING_CHAT_ID = 390661167;
 
         private const string API_TOKEN = "2111288854:AAHqmPxK9CCz87hFlxh_odfbqJDYkltzIXU";
 
@@ -134,7 +132,11 @@ namespace CndBot.Core
                         
                     //Check events request
                     case StartCommand.CHECK_EVENTS_MSG:
-                        break;
+                        await botClient.SendTextMessageAsync(message.Chat,
+                            "🕔 Виступ дитячого гурту 'Сопілочка' [22/12/21]\n\n" +
+                            "🕔 Набір дітей віком до 12 років в хор[15/12/21]\n\n" +
+                            "🕔 Набір в танцювальний гурток [06/02/22]");
+                    break;
                         
                     //Show on map request
                     case StartCommand.SHOW_ON_MAP_MSG:
