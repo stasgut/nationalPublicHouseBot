@@ -19,8 +19,8 @@ namespace CndBot.Core
     {
         public const string SITE_URL = "http://google.com";
         
-        public const long MAIN_CHAT_ID = 390661167;
-        public const long SIGNING_CHAT_ID = 390661167;
+        public const long MAIN_CHAT_ID = tokens.tokens.MAIN_CHAT_ID;
+        public const long SIGNING_CHAT_ID = tokens.tokens.SIGNING_CHAT_ID;
 
         private const string API_TOKEN = "2111288854:AAHqmPxK9CCz87hFlxh_odfbqJDYkltzIXU";
 

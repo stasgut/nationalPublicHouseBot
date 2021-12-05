@@ -6,6 +6,7 @@
 **/.idea/shelf/*
 **/.idea/dictionaries
 **/.idea/httpRequests/
+**/tokens
 
 # Sensitive or high-churn files
 **/.idea/**/dataSources/
@@ -21,6 +22,8 @@
 **/.idea/**/contentModel.xml
 **/.idea/**/modules.xml
 .idea
+.tokens
+.tokens/**
 
 *.suo
 *.user
