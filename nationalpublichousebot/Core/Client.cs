@@ -22,7 +22,7 @@ namespace CndBot.Core
         public const long MAIN_CHAT_ID = tokens.tokens.MAIN_CHAT_ID;
         public const long SIGNING_CHAT_ID = tokens.tokens.SIGNING_CHAT_ID;
 
-        private const string API_TOKEN = "2111288854:AAHqmPxK9CCz87hFlxh_odfbqJDYkltzIXU";
+        private const string API_TOKEN = tokens.tokens.API_TOKEN;
 
         private const long SIGN_CHAT_ID = -1;
         
